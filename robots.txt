@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://esenkosiservice.netlify.app/sitemap.xml
