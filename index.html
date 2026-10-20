@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esenkosi Services | Building, Restoring, Maintaining</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ================= VARIABLES & RESET ================= */
+        :root {
+            --gold: #C19B50;
+            --dark: #111111;
+            --light: #F9F9F9;
+            --white: #FFFFFF;
+            --gray: #666666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--gray);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--dark); }
+        a { text-decoration: none; color: inherit; }
+
+        /* ================= HEADER & NAV ================= */
+        header {
+            background-color: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 10px; }
+        .logo-svg { width: 60px; height: 40px; }
+        .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.4rem; letter-spacing: 1px; color: var(--dark); }
+        .logo-text span { color: var(--gold); }
+
+        nav ul { list-style: none; display: flex; gap: 30px; }
+        nav ul li a { font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
+        nav ul li a:hover { color: var(--gold); }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, #222 100%);
+            color: var(--white);
+            padding: 100px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 { color: var(--white); font-size: 3rem; margin-bottom: 20px; animation: slideDown 0.8s ease-out; }
+        .hero h1 span { color: var(--gold); }
+        .hero p { font-size: 1.2rem; margin-bottom: 40px; color: #ccc; animation: fadeIn 1.2s ease-out; }
+        .hero-btns { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+        }
+
+        .btn-gold { background-color: var(--gold); color: var(--white); box-shadow: 0 4px 15px rgba(193, 155, 80, 0.4); }
+        .btn-gold:hover { background-color: #a88543; transform: translateY(-3px); }
+        .btn-outline { background-color: transparent; border: 2px solid var(--gold); color: var(--gold); }
+        .btn-outline:hover { background-color: var(--gold); color: var(--white); }
+
+        /* ================= SERVICES ================= */
+        .section-padding { padding: 80px 5%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        .section-header .line { width: 80px; height: 3px; background-color: var(--gold); margin: 15px auto 0; }
+
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .service-card { background: var(--light); padding: 40px 25px; border-radius: 10px; text-align: center; transition: all 0.4s ease; border-bottom: 3px solid transparent; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-bottom: 3px solid var(--gold); background: var(--white); }
+        .service-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 15px; }
+
+        /* ================= INTERACTIVE CALCULATOR ================= */
+        .calculator-section { background-color: var(--light); }
+        .calc-container { max-width: 600px; margin: 0 auto; background: var(--white); padding: 40px; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border-top: 5px solid var(--gold); }
+        .calc-group { margin-bottom: 20px; }
+        .calc-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--dark); }
+        .calc-group select, .calc-group input { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Open Sans', sans-serif; font-size: 1rem; outline: none; transition: border 0.3s; }
+        .calc-group select:focus, .calc-group input:focus { border-color: var(--gold); }
+        .calc-result { margin-top: 25px; padding: 20px; background: #f0f8ff; border-left: 5px solid var(--gold); border-radius: 5px; display: none; font-size: 1.2rem; color: var(--dark); font-weight: 600; text-align: center; }
+
+        /* ================= CONTACT FORM ================= */
+        .contact-section { background: var(--dark); color: var(--white); }
+        .contact-section .section-header h2 { color: var(--white); }
+        .contact-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 15px; background: #222; border: 1px solid #444; border-radius: 8px; color: var(--white); font-family: 'Open Sans', sans-serif; outline: none; }
+        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color: var(--gold); }
+
+        .form-status { text-align: center; padding: 15px; border-radius: 8px; display: none; font-weight: 600; }
+        .status-success { background: rgba(76, 175, 80, 0.2); color: #4CAF50; border: 1px solid #4CAF50; }
+        .status-loading { color: var(--gold); }
+
+        /* ================= FOOTER & FLOATING BTN ================= */
+        footer { background-color: #0a0a0a; color: #888; padding: 40px 5%; text-align: center; border-top: 1px solid #222; }
+        .footer-contact { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 20px; }
+        .footer-contact a { color: var(--white); transition: color 0.3s; }
+        .footer-contact a:hover { color: var(--gold); }
+        .footer-trust { color: var(--gold); font-weight: 600; letter-spacing: 2px; margin-top: 20px; font-size: 0.9rem; }
+
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.3); z-index: 100; display: flex; align-items: center; justify-content: center; transition: all 0.3s; animation: pulse 2s infinite; }
+        .whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1); }
+
+        /* ================= ANIMATIONS & MOBILE ================= */
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; }
+            nav ul { gap: 15px; font-size: 0.9rem; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 65C25 65 40 45 45 10C55 30 65 50 50 65H60C65 65 70 55 85 35C100 55 110 65 120 65H130L85 20L65 45L45 20L10 65Z" fill="#C19B50"/>
+                <path d="M95 65L140 20L185 65H170L140 35L115 65H95Z" fill="#C19B50"/>
+                <rect x="130" y="48" width="10" height="17" fill="#C19B50" />
+            </svg>
+            <div class="logo-text">ESENKOSI <span>SERVICES</span></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#calculator">Get Quote</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <h1>BUILDING <span>•</span> RESTORING <span>•</span> MAINTAINING</h1>
+        <p>Your trusted partner for professional residential and commercial solutions.</p>
+        <div class="hero-btns">
+            <a href="#calculator" class="btn btn-gold">Calculate Quote</a>
+            <a href="https://wa.me/27731172357" target="_blank" class="btn btn-outline">Chat on WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section-padding" id="services">
+        <div class="section-header">
+            <h2>Our Services</h2>
+            <div class="line"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fa-solid fa-wrench service-icon"></i>
+                <h3>Maintenance & Repairs</h3>
+                <p>Repairs, plumbing, electrical & general maintenance.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-leaf service-icon"></i>
+                <h3>Garden Services</h3>
+                <p>Landscaping, lawn care & garden maintenance.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-spray-can service-icon"></i>
+                <h3>Cleaning Services</h3>
+                <p>Residential & commercial cleaning solutions.</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-helmet-safety service-icon"></i>
+                <h3>Construction</h3>
+                <p>Building, renovations & construction projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section class="section-padding calculator-section" id="calculator">
+        <div class="section-header">
+            <h2>Instant Quote Estimator</h2>
+            <div class="line"></div>
+        </div>
+        <div class="calc-container">
+            <div class="calc-group">
+                <label>Select Service:</label>
+                <select id="calc-service">
+                    <option value="cleaning">Cleaning Services (Rate: R50/sqm)</option>
+                    <option value="garden">Garden Services (Rate: R30/sqm)</option>
+                    <option value="maintenance">Maintenance (Rate: R200/hr)</option>
+                    <option value="construction">Construction (Rate: R1500/sqm)</option>
+                </select>
+            </div>
+            <div class="calc-group">
+                <label>Size / Quantity (sqm or hours):</label>
+                <input type="number" id="calc-size" placeholder="e.g. 50" min="1">
+            </div>
+            <button class="btn btn-gold" style="width: 100%;" onclick="calculateQuote()">Calculate Estimate</button>
+            
+            <div class="calc-result" id="calc-result">
+                Estimated Cost: <span id="total-price" style="color: var(--gold); font-size: 1.5rem;"></span>
+                <br><small style="font-size: 0.8rem; font-weight: normal; color: #666;">*This is a rough estimate. Contact us for a final quote.</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section-padding contact-section" id="contact">
+        <div class="section-header">
+            <h2>Get In Touch</h2>
+            <div class="line"></div>
+        </div>
+        <form class="contact-form" id="contact-form">
+            <div class="form-status status-loading" id="form-loading">Sending your request securely...</div>
+            <div class="form-status status-success" id="form-success">✓ Success! Your request has been sent. We will contact you shortly.</div>
+            
+            <!-- WEB3FORMS API KEY GOES HERE -->
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+            <input type="hidden" name="subject" value="New Quote Request from Esenkosi Website">
+
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <select name="service" required>
+                <option value="" disabled selected>Select Service Needed</option>
+                <option value="Maintenance">Maintenance & Repairs</option>
+                <option value="Garden">Garden Services</option>
+                <option value="Cleaning">Cleaning Services</option>
+                <option value="Construction">Construction</option>
+            </select>
+            <textarea name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
+            <button type="submit" class="btn btn-gold">Submit Request</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-contact">
+            <p><i class="fa-solid fa-phone" style="color: var(--gold);"></i> <a href="tel:0731172357">073 117 2357</a></p>
+            <p><i class="fa-brands fa-whatsapp" style="color: var(--gold);"></i> <a href="https://wa.me/27731172357">073 117 2357</a></p>
+            <p><i class="fa-solid fa-envelope" style="color: var(--gold);"></i> <a href="mailto:nselesmiso@gmail.com">nselesmiso@gmail.com</a></p>
+        </div>
+        <p>&copy; 2024 Esenkosi Services. All Rights Reserved.</p>
+        <div class="footer-trust">LICENSED • INSURED • TRUSTED</div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/27731172357" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. Calculator Logic
+        function calculateQuote() {
+            const service = document.getElementById('calc-service').value;
+            const size = parseFloat(document.getElementById('calc-size').value);
+            const resultBox = document.getElementById('calc-result');
+            const priceSpan = document.getElementById('total-price');
+
+            if (isNaN(size) || size <= 0) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            let rate = 0;
+            if (service === 'cleaning') rate = 50;
+            if (service === 'garden') rate = 30;
+            if (service === 'maintenance') rate = 200;
+            if (service === 'construction') rate = 1500;
+
+            const total = rate * size;
+            const formattedTotal = new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' }).format(total);
+            
+            priceSpan.innerText = formattedTotal;
+            resultBox.style.display = 'block';
+            resultBox.style.opacity = 0;
+            setTimeout(() => { resultBox.style.transition = 'opacity 0.5s'; resultBox.style.opacity = 1; }, 10);
+        }
+
+        // 2. Form Submission to Web3Forms API
+        const form = document.getElementById('contact-form');
+        const loadingMsg = document.getElementById('form-loading');
+        const successMsg = document.getElementById('form-success');
+        const submitBtn = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            loadingMsg.style.display = 'block';
+            successMsg.style.display = 'none';
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Processing...';
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    loadingMsg.style.display = 'none';
+                    successMsg.style.display = 'block';
+                    form.reset();
+                    setTimeout(() => { successMsg.style.display = 'none'; }, 5000);
+                } else {
+                    console.log(response);
+                    alert(json.message);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                alert("Something went wrong. Please try again.");
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Submit Request';
+            });
+        });
+    </script>
+</body>
+</html>
