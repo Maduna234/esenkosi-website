@@ -88,19 +88,17 @@
 
         .logo-container { display: flex; align-items: center; gap: 15px; }
         
-        /* UPDATED LOGO STYLING: ROUNDED CORNERS & GLOWING LIGHTS */
         .logo-img { 
             width: 55px; 
             height: 55px; 
             object-fit: cover; 
-            border-radius: 16px; /* Round corners */
-            border: 2px solid var(--gold); /* Gold outer layer */
-            box-shadow: 0 0 15px rgba(193, 155, 80, 0.6); /* The glowing "lights" effect */
+            border-radius: 16px; 
+            border: 2px solid var(--gold); 
+            box-shadow: 0 0 15px rgba(193, 155, 80, 0.6); 
             background-color: var(--white);
             transition: all 0.3s ease;
         }
 
-        /* Optional: Make the glow brighter when you hover over it */
         .logo-img:hover {
             box-shadow: 0 0 25px rgba(193, 155, 80, 1);
             transform: scale(1.05);
@@ -154,6 +152,82 @@
         .service-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(193, 155, 80, 0.1); }
         .service-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
         .service-card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--white); }
+
+        /* ================= ABOUT US SECTION ================= */
+        .about-section { background: var(--dark-card); border-top: 1px solid #222; border-bottom: 1px solid #222; }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1100px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(193, 155, 80, 0.2);
+            object-fit: cover;
+            max-height: 500px;
+        }
+
+        .about-text {
+            flex: 1.5;
+            min-width: 300px;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        .owner-badge {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            padding-left: 15px;
+            border-left: 3px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .owner-signature {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: var(--white);
+            font-size: 1.4rem;
+        }
+
+        .owner-title {
+            color: var(--gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .about-trust {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-weight: 600;
+            color: var(--white);
+        }
 
         /* ================= INTERACTIVE CALCULATOR ================= */
         .calculator-section { background-color: #111; border-top: 1px solid #222; border-bottom: 1px solid #222; }
@@ -210,7 +284,7 @@
         .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 100; display: flex; align-items: center; justify-content: center; transition: all 0.3s; animation: pulse 2s infinite; }
         .whatsapp-float:hover { background-color: #128C7E; transform: scale(1.1); }
 
-                /* ================= SOCIAL MEDIA ================= */
+        /* ================= SOCIAL MEDIA ================= */
         .social-links {
             display: flex;
             justify-content: center;
@@ -237,7 +311,7 @@
             background-color: var(--gold);
             color: var(--dark);
             transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(193, 155, 80, 0.5); /* Gold glow effect */
+            box-shadow: 0 5px 20px rgba(193, 155, 80, 0.5); 
         }
 
         /* ================= ANIMATIONS & MOBILE ================= */
@@ -257,7 +331,6 @@
     <!-- HEADER -->
     <header>
         <div class="logo-container">
-            <!-- The logo now has the glowing light effect -->
             <img src="logo.png" alt="Esenkosi Services Logo" class="logo-img">
             <div class="logo-text">ESENKOSI <span>SERVICES</span></div>
         </div>
@@ -265,6 +338,8 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
+                <!-- Added About Link Here -->
+                <li><a href="#about">About Us</a></li>
                 <li><a href="#calculator">Get Quote</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -307,6 +382,40 @@
                 <i class="fa-solid fa-helmet-safety service-icon"></i>
                 <h3>Construction</h3>
                 <p>Building, renovations & construction projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US / MEET THE OWNER -->
+    <section class="section-padding about-section" id="about">
+        <div class="section-header">
+            <h2>About Esenkosi Services</h2>
+            <div class="line"></div>
+        </div>
+        
+        <div class="about-container">
+            <!-- Owner Image -->
+            <div class="about-image">
+                <!-- Make sure your image is named owner.png -->
+                <img src="owner.png" alt="Smiso Nsele - Owner of Esenkosi Services">
+            </div>
+
+            <!-- Owner Text & Mission -->
+            <div class="about-text">
+                <h3>Building Trust, One Project at a Time.</h3>
+                <p>Welcome to Esenkosi Services. I'm <strong>Smiso Nsele</strong>, the proud owner and manager. We are a local, Richards Bay-based business dedicated to providing premium building, restoring, and maintaining solutions for both homes and businesses.</p>
+                <p><strong>Our Mission:</strong> To deliver top-quality craftsmanship, exceptional service, and total peace of mind to every client. We believe that a job isn't finished until you are 100% satisfied.</p>
+                
+                <div class="owner-badge">
+                    <span class="owner-signature">Smiso Nsele</span>
+                    <span class="owner-title">Founder & Manager</span>
+                </div>
+                
+                <div class="about-trust">
+                    <span><i class="fa-solid fa-check-circle" style="color: var(--gold);"></i> Licensed</span>
+                    <span><i class="fa-solid fa-check-circle" style="color: var(--gold);"></i> Insured</span>
+                    <span><i class="fa-solid fa-check-circle" style="color: var(--gold);"></i> Trusted</span>
+                </div>
             </div>
         </div>
     </section>
@@ -361,7 +470,6 @@
             <p style="margin-top: 15px; color: var(--gray);">Save our details to your phone for quick access.</p>
         </div>
         <div class="card-image-container">
-            <!-- Make sure your image is named business-card.png and is in the same folder -->
             <img src="business-card.png" alt="Esenkosi Services Official Business Card">
         </div>
     </section>
